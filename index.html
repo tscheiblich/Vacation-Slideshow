@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Costa Rica Countdown</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Asul' rel='stylesheet'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="kenburns.js"></script>
+	<link rel="stylesheet" href="style.css">
+		
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			//Set countdown text J~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			var target_date = new Date('2/2/2018');  // <---------------Set date here
+			var timeinmilisec = target_date - Date.now();
+			$('#countdown_text').text( Math.floor(1 + (timeinmilisec / (1000 * 60 * 60 * 24))) + ' days to go...'); 
+			
+			// Populate a quote in another box
+			var quoteList = [
+				'this week is a lifetime',
+				'no shirt.<br/>no shoes.<br/>no wireless service.',
+				'<span style="font-size:300%">pura<br/>vida</span>',
+				'bring me that horizon',
+				'let us get lost<br/>so that we may find ourselves',
+				'my kingdom for a beach and bottle',
+				'my favorite color is water, sky, and leaf'
+			];			
+			
+			var size = quoteList.length;
+			var x = Math.floor(size*Math.random());
+								
+			$('#quotebox').html(quoteList[x]);
+			//$('#quotebox').html('nap - drink - beach - repeat');
+
+			var imageList = [
+			  "https://i.ytimg.com/vi/nxY2o4J_AvY/maxresdefault.jpg",
+			  "http://3.bp.blogspot.com/_iimkkQ0UNx4/TGlXRpi1H4I/AAAAAAAAALg/0FnmUnwUzEQ/s1600/15PuertoViejo-15.JPG",
+			  "http://mediavault.point2.com/p2a/themeresource/706f/c996/7fd5/08bebe236b399df8bea3/Original.jpg",
+			  "https://a0.muscache.com/im/pictures/15d39edd-d4cf-4fba-8d3a-578c9a2ffb34.jpg",
+			  "https://a0.muscache.com/im/pictures/55404897/2c9d3499_original.jpg",
+			  "https://a1.r9cdn.net/rimg/dimg/92/cc/fc9e7481-city-47550-158f3d1c1f3.jpg",
+			  "https://lh3.googleusercontent.com/--4MHa1uOyGQ/TWxcSpiczSI/AAAAAAAABdY/zLWlGg-JP6Q/s1600/120.jpg",
+			  "https://enrutaporelmundo.files.wordpress.com/2011/07/escanear00013.jpg",
+			  "https://www.puertoviejosatellite.com/albums/mpinto_the_barge_playa_negra.jpg",
+			  "https://www.ourescapeclause.com/wp-content/uploads/2017/07/CostaRica-0174-1170x789.jpg",
+			  "http://kids.nationalgeographic.com/content/dam/kids/photos/Countries/A-G/costa-rica-cocos-waterfall.ngsversion.1396531623896.jpg",
+			  "http://www.scheiblich.net/cr/img/PuertoViejoMap.PNG",
+			  "http://s3.amazonaws.com/production.reserve123/images/product/1375-3.jpg",
+			  "https://kokobuzz.files.wordpress.com/2011/12/fruit-stand-on-highway-corr.jpg",
+			  "https://moon.com/wp-content/uploads/2015/12/03_08_CostaRica_Puerto-Viejo.jpg",
+			  "https://s-media-cache-ak0.pinimg.com/originals/c6/34/1f/c6341ff9157349a72a9c7109f61085c6.jpg",
+			  "http://costarica-pr.com/costa-rica-maps/Costa-Rica-Map-large.jpg",
+			  "https://www.guayabolodge.co.cr/wp-content/uploads/2016/08/Puerto-Viejo.jpg",
+			  "http://www.geckoeslodge.com/2013/wp-content/uploads/2015/03/Fish-tacos-delivered-to-hammock-Geckoes-Lodge-Cocles-Puerto-Viejo-Costa-Rica.jpg",
+			  "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2017/4/25/0/Original_Jeremy-Pawlowski-Costa-Rica-Food-6.jpg.rend.hgtvcom.1280.960.suffix/1493145024816.jpeg"
+			];
+
+
+		    for (var i = imageList.length - 1; i > 0; i--) {
+		        var j = Math.floor(Math.random() * (i + 1));
+		        var temp = imageList[i];
+		        imageList[i] = imageList[j];
+		        imageList[j] = temp;
+		    }
+
+
+			$('#image_container').attr('width', $(window).width());
+			$('#image_container').attr('height', $(window).height());
+			  
+			$('#image_container').kenburns({
+				images:	imageList,
+				frames_per_second: 10,
+				display_time: 30000,
+				fade_time: 2000,
+				zoom: 1.1
+			});
+						
+			//~~~~~~~~~~~~~~~~~ Set the text color for dates, countdown, and quote
+			// Get the background image pixel data
+			// Get the text box (<div>) dimensions
+			// Get the average of the pixel values within the text box geometry
+			// If the average is <128 (dark), the text should be white, otherwise make it black
+			// Loop through all of the text boxes (.textbox)
+			
+
+			$(".menu-btn").click(function(event){
+			    event.preventDefault();
+			    $("nav").toggleClass("menushow");
+			});
+
+		}); //Doc.ready function
+		
+		
+
+	</script>
+
+</head>
+<body>
+
+<div class="container-fluid">  <!-- Main Bootstrap Container -->
+
+	<canvas id="image_container"></canvas>
+	<div id="CRLogo">
+		<p id="CR">costa rica</p>
+		<p class="textbox" id="datestext">february 2-11, 2018</p>
+		<div class="textbox" id="quotebox"> </div>
+	</div>
+	<div id="countdown_box">
+		<p class="textbox" id="countdown_text"> </p>
+		
+	</div>
+	
+
+	<nav>
+        <div class="menu-btn">
+            <a href="#"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        </div>
+        
+        <ul>
+            <li><a href="#">Images</a></li>
+            <li><a href="#">Itinerary</a></li>
+            <li><a href="https://www.airbnb.com/rooms/4409229?location=casita%20azul%20puerto%20viejo" target="_new">Casita Azul <i class="glyphicon glyphicon-new-window"></i></a></li>
+            <li><a href="#">Things To Do</a></li>
+        </ul>
+    </nav>
+</div> <!-- Main Bootstrap Container -->
+
+<script>
+		$('#CRLogo').click(function() {
+  			$('#datestext').slideToggle(500);
+			$('#countdown_box').slideToggle(500);
+		});
+		$('#image_container').click( function() {
+			$('#image_container').kenburns.pause() 
+		});
+</script>
+</body>
+</html>
